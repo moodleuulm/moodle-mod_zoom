@@ -477,6 +477,7 @@ if ($zoom->show_security) {
         $table->data[] = $rowjoinurl;
     }
 
+
     // Show encryption type.
     if (!$zoom->webinar) {
         if ($config->showencryptiontype != ZOOM_ENCRYPTION_DISABLE) {
@@ -514,6 +515,8 @@ if ($zoom->show_security) {
         $table->data[] = $rowjoinbeforehost;
     }
 
+    /* KIZ MODIFICATION START
+    REASON: We don't want to allow teacher to restrict meetings to authorized users - LMS-5429.
     // Show authentication.
     $rowauthenticatedusers = new html_table_row();
     $rowauthenticatedusers->id = 'zoom_security-authenticatedusers';
@@ -521,6 +524,7 @@ if ($zoom->show_security) {
     $authenticatedusersheader->header = true;
     $rowauthenticatedusers->cells = [$authenticatedusersheader, $zoom->option_authenticated_users ? $stryes : $strno];
     $table->data[] = $rowauthenticatedusers;
+    KIZ MODIFICATION END */
 
     // Output table.
     echo html_writer::table($table);
