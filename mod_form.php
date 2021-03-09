@@ -300,11 +300,18 @@ class mod_zoom_mod_form extends moodleform_mod {
         $mform->addHelpButton('option_jbh', 'option_jbh', 'zoom');
         $mform->disabledIf('option_jbh', 'webinar', 'checked');
 
+/* KIZ MODIFICATION START
+   REASON: We don't want to allow teacher to restrict meetings to authorized users - LMS-5429. */
+        // Add authenticated users field.
+        $mform->addElement('hidden', 'option_authenticated_users', $config->defaultauthusersoption);
+/* KIZ MODIFICATION END */
+/* ORIGINAL START
         // Add authenticated users widget.
         $mform->addElement('advcheckbox', 'option_authenticated_users', get_string('authentication', 'zoom'),
                 get_string('option_authenticated_users', 'zoom'));
         $mform->setDefault('option_authenticated_users', $config->defaultauthusersoption);
         $mform->addHelpButton('option_authenticated_users', 'option_authenticated_users', 'zoom');
+   ORIGINAL END */
 
         // Adding the "media" fieldset, where all settings relating to media streams in the meeting are shown.
         $mform->addElement('header', 'general', get_string('media', 'mod_zoom'));

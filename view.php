@@ -359,8 +359,11 @@ if (!$zoom->webinar) {
     $table->data[] = array($strjoinbeforehost, $strjbh);
 }
 
+/* KIZ MODIFICATION START
+   REASON: We don't want to allow teacher to restrict meetings to authorized users - LMS-5429.
 // Show authentication.
 $table->data[] = array($strauthenticatedusers, ($zoom->option_authenticated_users) ? $stryes : $strno);
+   KIZ MODIFICATION END */
 
 // Output table.
 echo html_writer::table($table);
