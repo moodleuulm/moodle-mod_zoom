@@ -584,6 +584,12 @@ class mod_zoom_mod_form extends moodleform_mod {
         $mform->addHelpButton('option_jbh', 'option_jbh', 'zoom');
         $mform->disabledIf('option_jbh', 'webinar', 'checked');
 
+/* KIZ MODIFICATION START
+   REASON: We don't want to allow teacher to restrict meetings to authorized users - LMS-5429. */
+        // Add authenticated users field.
+        $mform->addElement('hidden', 'option_authenticated_users', $config->defaultauthusersoption);
+/* KIZ MODIFICATION END */
+/* ORIGINAL START
         // Add authenticated users widget.
         $mform->addElement(
             'advcheckbox',
@@ -593,6 +599,7 @@ class mod_zoom_mod_form extends moodleform_mod {
         );
         $mform->setDefault('option_authenticated_users', $config->defaultauthusersoption);
         $mform->addHelpButton('option_authenticated_users', 'option_authenticated_users', 'zoom');
+   ORIGINAL END */
 
         // Add show widget.
         $mform->addElement(
