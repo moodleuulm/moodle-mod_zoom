@@ -397,7 +397,13 @@ $table->data[] = array($straudioopt, get_string('audio_' . $zoom->option_audio, 
 $table->data[] = array($strmuteuponentry, ($zoom->option_mute_upon_entry) ? $stryes : $strno);
 
 // Show dial-in information.
+/* KIZ MODIFICATION START
+   REASON: We don't want to show dial-in informations for now - LMS-5377. */
+if (false) {
+/* KIZ MODIFICATION END */
+/* ORIGINAL START
 if (!empty($meetinginvite)) {
+   ORIGINAL END */
     $meetinginvitetext = str_replace("\r\n", '<br/>', $meetinginvite);
     $showbutton = html_writer::tag('button', $strmeetinginviteshow,
             array('id' => 'show-more-button', 'class' => 'btn btn-link pt-0 pl-0'));
