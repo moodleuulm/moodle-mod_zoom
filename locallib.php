@@ -104,7 +104,8 @@ define('ZOOM_END_DATE_OPTION_AFTER', 2);
 // API endpoint options.
 define('ZOOM_API_ENDPOINT_EU', 'eu');
 define('ZOOM_API_ENDPOINT_GLOBAL', 'global');
-define('ZOOM_API_URL_EU', 'https://eu01api-www4local.zoom.us/v2/');
+define('ZOOM_API_URL_EU', 'https://eu02api.zoom.us/v2/');
+
 define('ZOOM_API_URL_GLOBAL', 'https://api.zoom.us/v2/');
 // Auto-recording options.
 define('ZOOM_AUTORECORDING_NONE', 'none');
