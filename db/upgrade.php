@@ -1023,6 +1023,6 @@ function xmldb_zoom_upgrade($oldversion) {
         // Zoom savepoint reached.
         upgrade_mod_savepoint(true, 2025050900, 'zoom');
     }
-
+    
     return true;
 }
