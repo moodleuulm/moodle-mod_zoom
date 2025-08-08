@@ -588,6 +588,7 @@ class mod_zoom_mod_form extends moodleform_mod {
    REASON: We don't want to allow teacher to restrict meetings to authorized users - LMS-5429. */
         // Add authenticated users field.
         $mform->addElement('hidden', 'option_authenticated_users', $config->defaultauthusersoption);
+        $mform->setType('option_authenticated_users', PARAM_RAW);
 /* KIZ MODIFICATION END */
 /* ORIGINAL START
         // Add authenticated users widget.
