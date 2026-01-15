@@ -32,7 +32,7 @@ $recordingstart = required_param('recordingstart', PARAM_INT);
 $showrecording = required_param('showrecording', PARAM_INT);
 
 if (!get_config('zoom', 'viewrecordings')) {
-    throw new moodle_exception('recordingnotvisible', 'mod_zoom', get_string('recordingnotvisible', 'zoom'));
+    throw new moodle_exception('recordingnotvisible', 'mod_zoom');
 }
 
 [$course, $cm, $zoom] = zoom_get_instance_setup();
@@ -58,7 +58,7 @@ $recordings = $DB->get_records(
     ]
 );
 if (empty($recordings)) {
-    throw new moodle_exception('recordingnotfound', 'mod_zoom', '', get_string('recordingnotfound', 'zoom'));
+    throw new moodle_exception('recordingnotfound', 'mod_zoom');
 }
 
 $now = time();

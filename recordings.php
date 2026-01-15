@@ -32,7 +32,7 @@ require_once(__DIR__ . '/locallib.php');
 require_login($course, true, $cm);
 
 if (!get_config('zoom', 'viewrecordings')) {
-    throw new moodle_exception('recordingnotvisible', 'mod_zoom', get_string('recordingnotvisible', 'zoom'));
+    throw new moodle_exception('recordingnotvisible', 'mod_zoom');
 }
 
 $context = context_module::instance($cm->id);
