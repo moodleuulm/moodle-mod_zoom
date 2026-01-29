@@ -58,7 +58,9 @@ $PAGE->requires->js_call_amd("mod_zoom/toggle_text", 'init');
 $zoomuserid = zoom_get_user_id(false);
 
 // Check if this user is the (real) host.
-$userisrealhost = ($zoomuserid === $zoom->host_id);
+if(is_role_switched($course->id)){
+    $userisrealhost = ($zoomuserid === $zoom->host_id);
+}
 
 // Get the alternative hosts of the meeting.
 $alternativehosts = zoom_get_alternative_host_array_from_string($zoom->alternative_hosts);
