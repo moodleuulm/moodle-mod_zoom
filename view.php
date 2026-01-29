@@ -58,7 +58,7 @@ $PAGE->requires->js_call_amd("mod_zoom/toggle_text", 'init');
 $zoomuserid = zoom_get_user_id(false);
 
 // Check if this user is the (real) host.
-if(is_role_switched($course->id)){
+if (!is_role_switched($course->id)) {
     $userisrealhost = ($zoomuserid === $zoom->host_id);
 }
 
