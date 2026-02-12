@@ -416,7 +416,6 @@ class mod_zoom_mod_form extends moodleform_mod {
             $mform->setExpanded('breakoutrooms');
         }
 
-
         $courseid = $this->current->course;
         $context = context_course::instance($courseid);
 

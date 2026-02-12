@@ -794,7 +794,7 @@ class webservice {
             if (isset($zoom->breakoutrooms)) {
                 $breakoutroom = ['enable' => true, 'rooms' => $zoom->breakoutrooms];
             }
-        }else{
+        } else {
             $breakoutroom = ['enable' => false];
         }
         $data['settings']['breakout_room'] = $breakoutroom;

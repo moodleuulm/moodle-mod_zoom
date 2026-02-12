@@ -595,7 +595,7 @@ if ($ADMIN->fulltree) {
     $defaulttrackingfields->set_updatedcallback('mod_zoom_update_tracking_fields');
     $settings->add($defaulttrackingfields);
 
-    // Adding options for pre-assinged breakout rooms
+    // Adding options for pre-assinged breakout rooms.
     $defaultbreakoutroom = new admin_setting_configcheckbox(
         'zoom/defaultbreakoutroom',
         get_string('setting_breakoutroom', 'mod_zoom'),
