@@ -595,6 +595,17 @@ if ($ADMIN->fulltree) {
     $defaulttrackingfields->set_updatedcallback('mod_zoom_update_tracking_fields');
     $settings->add($defaulttrackingfields);
 
+    // Adding options for pre-assinged breakout rooms
+    $defaultbreakoutroom = new admin_setting_configcheckbox(
+        'zoom/defaultbreakoutroom',
+        get_string('setting_breakoutroom', 'mod_zoom'),
+        get_string('setting_breakoutroom_help', 'mod_zoom'),
+        1,
+        1,
+        0
+    );
+    $settings->add($defaultbreakoutroom);
+
     $invitationregexhelp = get_string('invitationregex_help', 'mod_zoom');
     if (!$moodlehashideif) {
         $invitationregexhelp .= "\n\n" . get_string(
