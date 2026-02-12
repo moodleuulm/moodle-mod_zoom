@@ -873,6 +873,9 @@ function zoom_reset_userdata($data) {
             'item' => get_string('meetingrecordingviewsdeleted', 'zoom'),
             'error' => false,
         ];
+
+        // The Zoom reset checkbox resets all user grades, always.
+        zoom_reset_gradebook($data->courseid);
     }
 
     return $status;
