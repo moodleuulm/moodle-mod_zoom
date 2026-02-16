@@ -78,7 +78,7 @@
         <ul class="nav nav-pills flex-column" role="tablist">
           {{#rooms}}
           <li id="tab-{{roomid}}" class="nav-item">
-            <a class="nav-link {{#roomactive}}active{{/roomactive}}" href="#link{{roomid}}" data-toggle="tab" role="tab">
+            <a class="nav-link {{#roomactive}}active{{/roomactive}}" href="#link{{roomid}}" data-bs-toggle="tab" data-toggle="tab" role="tab">
               <span class="tab-name">{{roomname}}</span>
             </a>
             <button type="button" class="pull-right delete-room" title="{{#str}} deleteroom, zoom {{/str}}">
