@@ -790,7 +790,7 @@ class webservice {
 
         $data['tracking_fields'] = $tfarray;
 
-        if ($config->defaultbreakoutroom) {
+        if (get_config('zoom', 'defaultbreakoutroom')) {
             if (isset($zoom->breakoutrooms)) {
                 $breakoutroom = ['enable' => true, 'rooms' => $zoom->breakoutrooms];
             }
