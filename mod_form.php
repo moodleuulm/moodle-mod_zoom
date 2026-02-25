@@ -411,7 +411,7 @@ class mod_zoom_mod_form extends moodleform_mod {
         $mform->hideIf('registration', 'recurrence_type', 'eq', ZOOM_RECURRINGTYPE_NOTIME);
 
         // Adding the "breakout rooms" fieldset.
-        if ($config->defaultbreakoutroom) {
+        if ($config->preassignbreakoutrooms) {
             $mform->addElement('header', 'breakoutrooms', get_string('breakoutrooms', 'mod_zoom'));
             $mform->setExpanded('breakoutrooms');
         }
@@ -438,7 +438,7 @@ class mod_zoom_mod_form extends moodleform_mod {
         }
 
         // Building meeting breakout rooms template data.
-        if ($config->defaultbreakoutroom) {
+        if ($config->preassignbreakoutrooms) {
             $templatedata = [
                 'rooms' => [],
                 'roomscount' => 0,
