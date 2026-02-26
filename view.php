@@ -151,7 +151,7 @@ if ($zoom->intro && $CFG->branch < '400') {
 // Only show if the admin did not disable this feature completely.
 if (!$showrecreate && $config->showcapacitywarning == true) {
     // Only show if the user viewing this is the host.
-    if ($userishost) {
+    if ($userishost && $iszoommanager) {
         // Get meeting capacity.
         $meetingcapacity = zoom_get_meeting_capacity($zoom->host_id, $zoom->webinar);
 
@@ -216,7 +216,7 @@ if (!$showrecreate) {
 
     if ($available) {
         // Show join meeting button.
-        if ($userishost) {
+        if ($userishost && $iszoommanager) {
             $buttonhtml = html_writer::tag('button', $strstart, ['type' => 'submit', 'class' => 'btn btn-success']);
         } else {
             $btntext = $strjoin;
@@ -449,7 +449,7 @@ if ($zoom->show_security) {
     // Get passcode information.
     $haspassword = (isset($zoom->password) && $zoom->password !== '');
     $strhaspass = ($haspassword) ? $stryes : $strno;
-    $canviewjoinurl = ($userishost || has_capability('mod/zoom:viewjoinurl', $context));
+    $canviewjoinurl = (($userishost && $iszoommanager) || has_capability('mod/zoom:viewjoinurl', $context));
 
     // Show passcode status.
     $rowhaspass = new html_table_row();
@@ -583,7 +583,7 @@ if ($zoom->show_media) {
     if (
         !$showrecreate
         && ($zoom->option_audio === ZOOM_AUDIO_BOTH || $zoom->option_audio === ZOOM_AUDIO_TELEPHONY)
-        && ($userishost || has_capability('mod/zoom:viewdialin', $context))
+        && (($userishost && $iszoommanager) || has_capability('mod/zoom:viewdialin', $context))
     ) {
         // Get meeting invitation from Zoom.
         $meetinginvite = zoom_webservice()->get_meeting_invitation($zoom)->get_display_string($cm->id);
