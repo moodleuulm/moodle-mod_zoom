@@ -418,7 +418,6 @@ $string['showsecurity'] = 'Show Security section';
 $string['showsecurity_help'] = 'Enabling this option will show the Security section on the meeting activity page.';
 $string['showsecurityonview'] = 'Show Security section on meeting page';
 $string['start'] = 'Start';
-$string['start_meeting'] = 'Start Meeting';
 $string['start_time'] = 'When';
 $string['starthostjoins'] = 'Start video when host joins';
 $string['startpartjoins'] = 'Start video when participant joins';

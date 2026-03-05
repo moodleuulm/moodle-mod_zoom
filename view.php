@@ -100,7 +100,6 @@ $isrecurringnotime = ($zoom->recurring && $zoom->recurrence_type == ZOOM_RECURRI
 
 $stryes = get_string('yes');
 $strno = get_string('no');
-$strstart = get_string('start_meeting', 'mod_zoom');
 $strjoin = get_string('join_meeting', 'mod_zoom');
 $strregister = get_string('register', 'mod_zoom');
 $strtime = get_string('meeting_time', 'mod_zoom');
@@ -154,7 +153,7 @@ if ($zoom->intro && $CFG->branch < '400') {
 // Only show if the admin did not disable this feature completely.
 if (!$showrecreate && $config->showcapacitywarning == true) {
     // Only show if the user viewing this is the host.
-    if ($userishost) {
+    if ($iszoommanager) {
         // Get meeting capacity.
         $meetingcapacity = zoom_get_meeting_capacity($zoom->host_id, $zoom->webinar);
 
@@ -207,8 +206,11 @@ if (!$showrecreate && $config->showcapacitywarning == true) {
 
 // Show join meeting button or unavailability note.
 if (!$showrecreate) {
-    // If registration is required, check the registration.
-    if (!$userishost && $zoom->registration != ZOOM_REGISTRATION_OFF) {
+    if ($userishost) {
+        // Hosts are pre-registered.
+        $userisregistered = true;
+    } else if ($zoom->registration != ZOOM_REGISTRATION_OFF) {
+        // If registration is required, check the registration.
         $userisregistered = zoom_is_user_registered_for_meeting($USER->email, $zoom->meeting_id, $zoom->webinar);
 
         // Unregistered users are allowed to register.
@@ -219,17 +221,14 @@ if (!$showrecreate) {
 
     if ($available) {
         // Show join meeting button.
-        if ($userishost) {
-            $buttonhtml = html_writer::tag('button', $strstart, ['type' => 'submit', 'class' => 'btn btn-success']);
-        } else {
-            $btntext = $strjoin;
-            // If user is not already registered, use register text.
-            if ($zoom->registration != ZOOM_REGISTRATION_OFF && !$userisregistered) {
-                $btntext = $strregister;
-            }
+        $btntext = $strjoin;
 
-            $buttonhtml = html_writer::tag('button', $btntext, ['type' => 'submit', 'class' => 'btn btn-primary']);
+        // If user is not already registered, use register text.
+        if ($zoom->registration != ZOOM_REGISTRATION_OFF && !$userisregistered) {
+            $btntext = $strregister;
         }
+
+        $buttonhtml = html_writer::tag('button', $btntext, ['type' => 'submit', 'class' => 'btn btn-primary']);
 
         $aurl = new moodle_url('/mod/zoom/loadmeeting.php', ['id' => $cm->id]);
         $buttonhtml .= html_writer::input_hidden_params($aurl);
@@ -452,7 +451,7 @@ if ($zoom->show_security) {
     // Get passcode information.
     $haspassword = (isset($zoom->password) && $zoom->password !== '');
     $strhaspass = ($haspassword) ? $stryes : $strno;
-    $canviewjoinurl = ($userishost || has_capability('mod/zoom:viewjoinurl', $context));
+    $canviewjoinurl = has_capability('mod/zoom:viewjoinurl', $context);
 
     // Show passcode status.
     $rowhaspass = new html_table_row();
@@ -586,7 +585,7 @@ if ($zoom->show_media) {
     if (
         !$showrecreate
         && ($zoom->option_audio === ZOOM_AUDIO_BOTH || $zoom->option_audio === ZOOM_AUDIO_TELEPHONY)
-        && ($userishost || has_capability('mod/zoom:viewdialin', $context))
+        && has_capability('mod/zoom:viewdialin', $context)
     ) {
         // Get meeting invitation from Zoom.
         $meetinginvite = zoom_webservice()->get_meeting_invitation($zoom)->get_display_string($cm->id);
