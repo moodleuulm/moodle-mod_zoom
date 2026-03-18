@@ -1242,7 +1242,9 @@ class webservice {
             $this->get_access_token();
         }
 
-        mtrace('checking has_scope(' . implode(' || ', $scopes) . ')');
+        if (CLI_SCRIPT) {
+            mtrace('checking has_scope(' . implode(' || ', $scopes) . ')');
+        }
 
         $matchingscopes = \array_intersect($scopes, $this->scopes);
         return !empty($matchingscopes);
