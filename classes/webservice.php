@@ -558,7 +558,7 @@ class webservice {
 
         // Set a default meeting password requirment if it is not present.
         if (!isset($meetingsecurity->meeting_password_requirement)) {
-              $meetingsecurity->meeting_password_requirement = (object) self::DEFAULT_MEETING_PASSWORD_REQUIREMENT;
+            $meetingsecurity->meeting_password_requirement = (object) self::DEFAULT_MEETING_PASSWORD_REQUIREMENT;
         }
 
         // Set a default encryption setting if it is not present.

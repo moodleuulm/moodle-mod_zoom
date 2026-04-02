@@ -29,7 +29,7 @@ $addons = [
         "handlers" => [
             'zoommeetingdetails' => [
                 'displaydata' => [
-                'title' => 'pluginname',
+                    'title' => 'pluginname',
                     'icon' => $CFG->wwwroot . '/mod/zoom/pix/icon.gif',
                     'class' => '',
                 ],

@@ -654,6 +654,8 @@ class mod_zoom_mod_form extends moodleform_mod {
         // Add autorecording option if enabled.
         $allowrecordingchangeoption = $config->allowrecordingchangeoption;
         if ($allowrecordingchangeoption) {
+            $defaultsetting = $config->recordingoption;
+
             // Add auto recording options according to user settings.
             $options = [
                 ZOOM_AUTORECORDING_NONE => get_string('autorecording_none', 'mod_zoom'),
@@ -661,20 +663,18 @@ class mod_zoom_mod_form extends moodleform_mod {
 
             if (!empty($hostuserid)) {
                 $recordingsettings = zoom_get_user_settings($hostuserid)->recording;
-            }
 
-            if (!empty($recordingsettings->local_recording)) {
-                $options[ZOOM_AUTORECORDING_LOCAL] = get_string('autorecording_local', 'mod_zoom');
-            }
+                if ($config->recordingoption === ZOOM_AUTORECORDING_USERDEFAULT) {
+                    $defaultsetting = $recordingsettings->auto_recording;
+                }
 
-            if (!empty($recordingsettings->cloud_recording)) {
-                $options[ZOOM_AUTORECORDING_CLOUD] = get_string('autorecording_cloud', 'mod_zoom');
-            }
+                if (!empty($recordingsettings->local_recording)) {
+                    $options[ZOOM_AUTORECORDING_LOCAL] = get_string('autorecording_local', 'mod_zoom');
+                }
 
-            if ($config->recordingoption === ZOOM_AUTORECORDING_USERDEFAULT) {
-                $defaultsetting = $recordingsettings->auto_recording;
-            } else {
-                $defaultsetting = $config->recordingoption;
+                if (!empty($recordingsettings->cloud_recording)) {
+                    $options[ZOOM_AUTORECORDING_CLOUD] = get_string('autorecording_cloud', 'mod_zoom');
+                }
             }
 
             $mform->addElement('select', 'option_auto_recording', get_string('option_auto_recording', 'mod_zoom'), $options);
@@ -877,14 +877,14 @@ class mod_zoom_mod_form extends moodleform_mod {
 
         if ($zoomuserid !== false) {
             $recordingsettings = zoom_get_user_settings($zoomuserid)->recording;
-        }
 
-        if (!empty($recordingsettings->local_recording)) {
-            $options[ZOOM_AUTORECORDING_LOCAL] = get_string('autorecording_local', 'mod_zoom');
-        }
+            if (!empty($recordingsettings->local_recording)) {
+                $options[ZOOM_AUTORECORDING_LOCAL] = get_string('autorecording_local', 'mod_zoom');
+            }
 
-        if (!empty($recordingsettings->cloud_recording)) {
-            $options[ZOOM_AUTORECORDING_CLOUD] = get_string('autorecording_cloud', 'mod_zoom');
+            if (!empty($recordingsettings->cloud_recording)) {
+                $options[ZOOM_AUTORECORDING_CLOUD] = get_string('autorecording_cloud', 'mod_zoom');
+            }
         }
 
         $recordingelement->load($options);
