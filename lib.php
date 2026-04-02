@@ -876,6 +876,11 @@ function zoom_reset_userdata($data) {
 
         // The Zoom reset checkbox resets all user grades, always.
         zoom_reset_gradebook($data->courseid);
+        $status[] = [
+            'component' => $componentstr,
+            'item' => get_string('grades'),
+            'error' => false,
+        ];
     }
 
     return $status;
