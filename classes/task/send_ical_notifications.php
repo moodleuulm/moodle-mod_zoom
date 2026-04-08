@@ -272,7 +272,7 @@ class send_ical_notifications extends scheduled_task {
      */
     private function get_users_to_notify(int $zoomid, int $courseid) {
         $cminfo = get_fast_modinfo($courseid)->instances['zoom'][$zoomid];
-        $users = get_users_by_capability($cminfo->context, 'mod/zoom:view');
+        $users = get_enrolled_users($cminfo->context, 'mod/zoom:view', 0, 'u.*', null, 0, 0, true);
 
         if (empty($users)) {
             return [];
