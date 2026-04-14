@@ -2,7 +2,12 @@
 Feature: View a meeting
 
   Background:
-    Given the following "users" exist:
+    Given the following config values are set as admin:
+      | config       | value | plugin | encrypted |
+      | accountid    | test  | zoom   |           |
+      | clientid     | test  | zoom   |           |
+      | clientsecret | test  | zoom   |           |
+    And the following "users" exist:
       | username | firstname | lastname | email                |
       | teacher1 | Terry1    | Teacher1 | teacher1@example.com |
       | student1 | Sam1      | Student1 | student1@example.com |
@@ -22,7 +27,6 @@ Feature: View a meeting
       | section  | 1                        |
       | grade    | 100                      |
 
-  @javascript
   Scenario: As a student, I should be able to view a Zoom meeting's details
     When I am on the "Meeting 1" "mod_zoom > View" page logged in as "student1"
     Then I should see "Start Time"
