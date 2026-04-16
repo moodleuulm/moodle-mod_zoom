@@ -1,5 +1,28 @@
 ### Releases ###
 
+#### v5.5.0 ####
+
+- Feature: Add generator for Behat tests #687 (thanks @armccoy)
+- Bugfix: Fix duplicate string syntax with recording messages #695 (thanks @jrchamp)
+- Bugfix: Change from legacy to archetypes for capability types in access file #694 (thanks @jrchamp)
+- Bugfix: Prioritize Moodle capabilities over assumed access of hosts #703 (thanks @jrchamp)
+    - Removed string `mod_zoom/start_meeting`
+- Bugfix: Role switching now properly uses capabilities instead of assuming hosts have all access #697 (thanks @cbounphengsy)
+- Feature: Added setting for pre-assigned breakout rooms #699 (thanks @cbounphengsy)
+    - New setting `zoom/preassignbreakoutrooms`
+    - New string `mod_zoom/setting_breakoutroom`
+    - New string `mod_zoom/setting_breakoutroom_help`
+- Bugfix: Remove debug message from admin settings page #705 (thanks @karenliulll)
+- CI: Only use requested images; enable opcache #706 (thanks @jrchamp)
+- Bugfix: Use ESM format for form.js and add Bootstrap 5 support #701 (thanks @jrchamp)
+- Bugfix: Call grade reset when Zoom reset userdata is checked #700 (thanks @smbader)
+- Bugfix: Only notify active enrollments of iCal events #708 (thanks @paulandm)
+- Hardening: Provide more context with get_recording_url_list #709 (thanks @jrchamp)
+- Bugfix: configuration setting moved from generator to Behat feature file #710 (thanks @jrchamp)
+- Feature: Update module language string for 5.2 support #711 (thanks @jrchamp)
+    - New string `mod_zoom/modulename_summary`
+    - New string `mod_zoom/modulename_tip`
+
 #### v5.4.5 ####
 
 - Bugfix: Case-insensitive comparisons for alternative host emails #677
