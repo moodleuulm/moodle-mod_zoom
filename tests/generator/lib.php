@@ -32,10 +32,6 @@ class mod_zoom_generator extends testing_module_generator {
         global $CFG;
         require_once($CFG->dirroot . '/mod/zoom/locallib.php');
 
-        set_config('clientid', 'test', 'zoom');
-        set_config('clientsecret', 'test', 'zoom');
-        set_config('accountid', 'test', 'zoom');
-
         // Mock Zoom data for testing.
         $defaultzoomsettings = [
             'grade' => 0,
